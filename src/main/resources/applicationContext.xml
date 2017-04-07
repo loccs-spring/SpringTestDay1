@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- -->
+    <bean id="user" class="cn.edu.sjtu.user.User" scope="prototype"></bean>
+
+    <bean id="bean2" class ="cn.edu.sjtu.user.Bean2Factory" factory-method="getBean2"></bean>
+
+    <bean id="bean3factory" class ="cn.edu.sjtu.user.Bean3Factory"></bean>
+    <bean id="bean3" factory-bean="bean3factory" factory-method="getBean3"></bean>
+
+    <bean id="userDao" class="cn.edu.sjtu.property.UserDao"></bean>
+    <bean id="userService" class="cn.edu.sjtu.property.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+
+
+    <bean id="demo1" class="cn.edu.sjtu.property.PropertyDemo1">
+        <constructor-arg name="userName" value="xiaoma"></constructor-arg>
+    </bean>
+
+    <bean id="book" class="cn.edu.sjtu.property.Book">
+        <property name="bookName" value="gone with wind"></property>
+
+    </bean>
+
+    <bean id="person" class="cn.edu.sjtu.property.Person" p:name="person name"></bean>
+
+    <bean id="addressList" class="cn.edu.sjtu.property.Address">
+        <constructor-arg>
+            <list>
+                <value>203</value>
+                <value>2C</value>
+                <value>JBT Street</value>
+                <value>New York</value>
+                <value>276001</value>
+            </list>
+        </constructor-arg>
+
+    </bean>
+
+</beans>
